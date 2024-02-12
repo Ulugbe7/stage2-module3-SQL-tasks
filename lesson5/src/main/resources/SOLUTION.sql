@@ -1,24 +1,24 @@
 SELECT *
-FROM payments
+from payment
 WHERE amount >= 500;
 
 SELECT *
-FROM students
-WHERE TIMESTAMPDIFF(YEAR, birthdate, CURDATE()) > 20;
+from student
+WHERE birthday < DATEADD(YEAR, -20, '20001010');
 
 SELECT *
-FROM students
+FROM student
 WHERE groupnumber = 10
-  AND TIMESTAMPDIFF(YEAR, birthdate, CURDATE()) < 20;
+  AND birthday > DATEADD(YEAR, -20, '20001010');
 
 SELECT *
-FROM students
+FROM student
 WHERE name = 'Mike'
    OR groupnumber IN (4, 5, 6);
 
 SELECT *
 FROM payment
-WHERE TIMESTAMPDIFF(MONTH, payment_date, CURDATE()) < 8;
+WHERE payment_date > DATEADD(MONTH, -8, '20001010');
 
 SELECT *
 FROM student
