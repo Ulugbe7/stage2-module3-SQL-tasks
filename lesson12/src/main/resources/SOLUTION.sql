@@ -20,7 +20,7 @@ WHERE name = 'DAILY';
 
 DELETE
 FROM payment
-WHERE type_id NOT IN (SELECT id FROM paymenttype);2
+WHERE type_id NOT IN (SELECT id FROM paymenttype);
 
 DELETE
 FROM mark
