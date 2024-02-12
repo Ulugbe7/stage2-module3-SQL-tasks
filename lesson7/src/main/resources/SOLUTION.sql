@@ -4,9 +4,9 @@ WHERE mark > 6
 ORDER BY mark DESC;
 
 SELECT *
-FROM payments
-WHERE payment_amount < 300
-ORDER BY payment_amount ASC;
+FROM payment
+WHERE amount < 300
+ORDER BY amount ASC;
 
 SELECT *
 FROM paymenttype
