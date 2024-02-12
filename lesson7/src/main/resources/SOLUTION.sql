@@ -18,5 +18,5 @@ ORDER BY name DESC;
 
 SELECT *
 FROM student
-WHERE id IN (SELECT DISTINCT student_id FROM payment WHERE amount > 1000)
+WHERE id in (SELECT DISTINCT P.student_id FROM payment P where P.amount > 1000)
 ORDER BY birthday ASC;
