@@ -10,13 +10,14 @@ ORDER BY amount ASC;
 
 SELECT *
 FROM paymenttype
-ORDER BY name ASC;
+ORDER BY name;
 
 SELECT *
 FROM student
 ORDER BY name DESC;
 
-SELECT *
-FROM student
-WHERE id in (SELECT DISTINCT P.student_id FROM payment P where P.amount > 1000)
-ORDER BY birthday ASC;
+SELECT DISTINCT *
+FROM student AS s
+         JOIN payment AS p ON s.id = p.student_id
+WHERE amount > 1000
+ORDER BY birthday;

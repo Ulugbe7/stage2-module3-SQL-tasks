@@ -1,18 +1,22 @@
 SELECT *
 FROM payment
-WHERE type_id = (SELECT type_id FROM paymenttype WHERE name = 'MONTHLY');
+         JOIN paymenttype ON payment.type_id = paymenttype.id
+WHERE name = 'MONTHLY';
 
 SELECT *
-FROM mark
-WHERE subject_id = (SELECT DISTINCT subject_id FROM Subject WHERE name = 'Art');
+FROM mark AS m
+         JOIN subject AS s ON m.subject_id = s.id
+WHERE name = 'Art';
 
-SELECT *
-FROM student
-WHERE id IN
-      (SELECT DISTINCT student_id FROM Payment WHERE type_id = (SELECT type_id FROM PaymentType WHERE name = 'WEEKLY'));
+SELECT DISTINCT *
+FROM student AS s
+         JOIN payment AS p ON s.id = p.student_id
+         JOIN paymenttype AS pt ON p.type_id = pt.id
+WHERE pt.name = 'WEEKLY';
 
-SELECT *
-FROM student
-WHERE id IN (SELECT DISTINCT student_id
-             FROM mark
-             WHERE subject_id = (SELECT DISTINCT subject_id FROM subject WHERE name = 'Math'));
+SELECT DISTINCT *
+FROM student AS st
+         JOIN mark AS m ON st.id = m.student_id
+         JOIN subject AS s ON m.subject_id = s.id
+WHERE s.name = 'Math';
+

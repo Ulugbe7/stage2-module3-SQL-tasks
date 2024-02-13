@@ -9,4 +9,3 @@ FROM student;
 
 SELECT DISTINCT amount
 FROM payment;
-

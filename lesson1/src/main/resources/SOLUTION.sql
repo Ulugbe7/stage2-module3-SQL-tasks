@@ -1,39 +1,41 @@
-USE Univesity;
+CREATE TABLE student
+(
+    id          BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name        VARCHAR(45),
+    birthday    DATE,
+    groupnumber INT    NOT NULL
+);
+CREATE TABLE subject
+(
+    id          BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name        VARCHAR(250),
+    description VARCHAR(255),
+    grade       int    NOT NULL
+);
 
-CREATE TABLE Student IN University{
-    id bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name varchar(255),
-    birthday date,
-    group int
-}
+CREATE TABLE mark
+(
+    id         BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    student_id BIGINT,
+    subject_id BIGINT,
+    mark       INT    NOT NULL,
+    foreign key (student_id) references student (id),
+    foreign key (subject_id) references subject (id)
+);
 
-CREATE TABLE Subject IN University{
-    id bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name varchar(255),
-    description varchar(255),
-    grade int
-    }
+CREATE TABLE paymenttype
+(
+    id   BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(45)
+);
 
-CREATE TABLE PaymentType IN University{
-    id bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name varchar(255)
-    }
-
-CREATE TABLE Payment IN University{
-    id bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    type_id bigint,
-    amount decimal,
-    student_id bigint,
-    payment_date date,
-    foreign key (type_id) REFERENCES PaymentType(id),
-    foreign key (student_id) REFERENCES Student(id)
-    }
-
-CREATE TABLE Mark IN University{
-    id bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    student_id bigint,
-    subject_id bigint,
-    mark int,
-    foreign key(student_id) REFERENCES Student(id),
-    foreign key(subject_id) REFERENCES Subject(id)
-    }
+CREATE TABLE payment
+(
+    id           BIGINT  NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    type_id      BIGINT,
+    amount       decimal NOT NULL,
+    payment_date TIMESTAMP,
+    student_id   BIGINT  NOT NULL,
+    foreign key (type_id) references paymenttype (id),
+    foreign key (student_id) references student (id)
+);
